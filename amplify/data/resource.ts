@@ -81,12 +81,13 @@ const schema = a.schema({
   //   shift: a.belongsTo('Shift', 'shiftId'),
   // }),
   Member: a.model({
+    userId: a.id().required(),
     name: a.string().required(),
     employeeId: a.string(),
     phone: a.phone(),
     email: a.email(),
     onCall: a.boolean().default(false),
-    payType: a.ref('PayType'),
+    payType: a.ref("PayType"),
     pay: a.float(),
     startDate: a.date(),
     birthDate: a.date(),
@@ -102,6 +103,7 @@ const schema = a.schema({
     // shifts: a.hasMany('MemberShift', 'memberId'),
     // shiftNotes: a.hasMany('MemberShiftNote', 'memberId'),
   })
+    .identifier(["userId"])
   // Position: a.model({
   //   name: a.string().required(),
   //   // one-to-many relationships

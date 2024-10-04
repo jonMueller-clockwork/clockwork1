@@ -1,6 +1,7 @@
 package com.example.clockwork
 
 import android.os.Bundle
+import android.util.Log
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.compose.foundation.layout.Column
@@ -25,9 +26,10 @@ class MainActivity : ComponentActivity() {
                     color = MaterialTheme.colorScheme.background
                 ) {
                     Authenticator { state ->
+                        Log.d("Login", state.user.userId)
                         Column {
                             Text(
-                                text = "Hello ${state.user.username}!",
+                                text = "Hello ${state.user.userId}!",
                             )
                             Button(onClick = {
                                 Amplify.Auth.signOut { }
