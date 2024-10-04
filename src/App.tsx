@@ -1,29 +1,29 @@
-//import { useEffect, useState } from "react";
-//import type { Schema } from "../amplify/data/resource";
-//import { generateClient } from "aws-amplify/data";
+import { useEffect, useState } from "react";
+import type { Schema } from "../amplify/data/resource";
+import { generateClient } from "aws-amplify/data";
 
-//const client = generateClient<Schema>();
+const client = generateClient<Schema>();
 
 function App() {
-  // const [todos, setTodos] = useState<Array<Schema["Todo"]["type"]>>([]);
+  const [members, setMembers] = useState<Array<Schema["Member"]["type"]>>([]);
 
-  // useEffect(() => {
-  //   client.models.Todo.observeQuery().subscribe({
-  //     next: (data) => setTodos([...data.items]),
-  //   });
-  // }, []);
+  useEffect(() => {
+    client.models.Member.observeQuery().subscribe({
+      next: (data) => setMembers([...data.items]),
+    });
+  }, []);
 
-  // function createTodo() {
-  //   client.models.Todo.create({ content: window.prompt("Todo content") });
-  // }
+  function createMember() {
+    client.models.Member.create({ name: window.prompt("Name") ?? "Jon" });
+  }
 
   return (
     <main>
-      {/* <h1>My todos</h1>
-      <button onClick={createTodo}>+ new</button>
+      <h1>My todos</h1>
+      <button onClick={createMember}>+ new</button>
       <ul>
-        {todos.map((todo) => (
-          <li key={todo.id}>{todo.content}</li>
+        {members.map((member) => (
+          <li key={member.id}>{member.name}</li>
         ))}
       </ul>
       <div>
@@ -32,7 +32,7 @@ function App() {
         <a href="https://docs.amplify.aws/react/start/quickstart/#make-frontend-updates">
           Review next step of this tutorial.
         </a>
-      </div> */}
+      </div>
     </main>
   );
 }
