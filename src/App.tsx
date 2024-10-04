@@ -14,7 +14,8 @@ function App() {
   }, []);
 
   function createMember() {
-    client.models.Member.create({ name: window.prompt("Name") ?? "Jon" });
+    var a = client.models.Member.create({ name: window.prompt("Name") ?? "Jon" });
+    console.log(a);
   }
 
   return (
