@@ -14,7 +14,7 @@ function App() {
   }, []);
 
   function createMember() {
-    var a = client.models.Member.create({ name: window.prompt("Name") ?? "Jon" });
+    var a = client.models.Member.create({ userId: window.prompt("User ID") ?? "abc", name: window.prompt("Name") ?? "Jon" });
     console.log(a);
   }
 
@@ -24,7 +24,7 @@ function App() {
       <button onClick={createMember}>+ new</button>
       <ul>
         {members.map((member) => (
-          <li key={member.id}>{member.name}</li>
+          <li key={member.userId}>{member.name}</li>
         ))}
       </ul>
       <div>
